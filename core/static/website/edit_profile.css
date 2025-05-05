@@ -1,0 +1,105 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+form p {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"],
+input[type="password"],
+select,
+textarea {
+    width: 95%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #00C9A7;
+}
+
+
+
+/* Media queries*/
+
+/* Responsive for mobile screens */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    input[type="password"],
+    select,
+    textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

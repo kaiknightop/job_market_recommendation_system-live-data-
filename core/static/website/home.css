@@ -1,0 +1,165 @@
+
+h1 {
+    text-align: center;
+    
+    font-size: 40px;
+    font-weight: bold;
+    background: linear-gradient(to right, #f8f8f8, #e0e0e0,  #b0b0b0, #808080,  #303030);
+    background-clip: text;
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 10s linear infinite;
+}
+@keyframes animate-gradient {
+    to {
+        background-position: 200%;
+    }
+}
+ h2{
+    color: #ffffff;
+ }
+ h3{
+    color: #b1b1b1
+ }
+
+ .job-card{
+    color: #ffffff;
+ }
+.hero-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.hero-section p {
+    font-size: 18px;
+    color: #b1b1b1;
+    margin-bottom: 20px;
+}
+
+.hero-section a {
+    background: #6C63FF;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.hero-section a:hover {
+    background-color: #00C9A7;
+}
+
+.recommendation-box {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: rgba(230, 230, 230, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.job-list {
+    list-style: none;
+    padding: 0;
+}
+
+.job-item {
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.similar{
+    color: white;
+    text-decoration: none;
+}
+.similar:hover{
+    text-decoration: underline;
+}
+
+
+.search-form {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.search-form input {
+    padding: 10px;
+    width: 60%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #6C63FF;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #00C9A7;
+}
+
+
+/*Media Query*/
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2, h3 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .hero-section {
+        margin: 20px 10px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+
+    .hero-section a {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .recommendation-box {
+        padding: 15px;
+        margin: 20px 10px;
+    }
+
+    .job-item {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .search-form input {
+        width: 80%;
+        font-size: 14px;
+    }
+
+    .search-form button {
+        margin-top: 10px;
+        width: 80%;
+        font-size: 14px;
+    }
+
+    .search-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

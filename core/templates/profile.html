@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'website/profile.css' %}">
+
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-image">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+            {% else %}
+                <img src="{% static 'website/default.jpg' %}" alt="Default Profile Picture">
+            {% endif %}
+        </div>
+        <h2>{{ user.username }}</h2>
+        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+        <p><strong>Skills:</strong> {{ profile.skills }}</p>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+        <a href="{% url 'edit_profile' %}" class="edit-profile-btn">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}

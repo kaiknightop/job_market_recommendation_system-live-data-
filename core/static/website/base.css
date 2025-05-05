@@ -1,0 +1,124 @@
+/* Background Slideshow using ::before */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    animation: backgroundSlide 30s infinite;
+    opacity: 0.75;
+}
+
+/* Slideshow keyframes */
+@keyframes backgroundSlide {
+    0% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image1.jpg"); }
+    20% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image2.jpg"); }
+    40% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image3.jpg"); }
+    60% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image4.jpg"); }
+    80% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image5.jpg"); }
+    100% { background-image: linear-gradient(rgba(0,0,0,0.7)),  url("/static/website/images/image1.jpg"); }
+}
+
+/* Apply full height and layout structure */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2F2F2F;
+}
+
+/* Wrapper for layout */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    will-change: opacity;
+    flex: 1;
+}
+
+/* Sticky nav */
+nav {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+nav a {
+    color: blue;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.container {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: transparent;
+    border-radius: 12px;
+    color: white;
+    flex: 1;
+}
+
+/* Footer always at bottom */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: transparent;
+    color: rgb(230, 215, 215);
+    font-size: 14px;
+    margin-top: auto;
+}
+
+
+/*Media query*/
+/* Responsive layout for mobile screens */
+@media screen and (max-width: 768px) {
+    nav {
+        padding: 10px 0;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 20px;
+        margin: 20px 10px;
+        font-size: 15px;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    h1, h2, h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}

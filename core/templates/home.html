@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'website/home.css' %}">
+
+<form method="get" action="{% url 'search_jobs' %}" class="search-form">
+    <input type="text" name="keyword" placeholder="Search for jobs..." required>
+    <button type="submit">Search</button>
+</form>
+
+<h1>Welcome to the Job Market Analysis and Hybrid Recommendation System</h1>
+
+<div class="hero-section">
+    <p>Get personalized job recommendations based on your skills and location.</p>
+    <a href="{% url 'profile' %}">Update Your Profile</a>
+</div>
+
+<a class="similar" href="{% url 'similar_users' %}">👥 Others with similar profiles also viewed…</a>
+
+
+<h2>Recommended Jobs for You</h2>
+
+{% if jobs %}
+    <div class="job-listings">
+        {% for job in jobs %}
+            <div class="job-card">
+                <h3>{{ job.title }}</h3>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Snippet:</strong> {{ job.snippet }}</p>
+                <a href="{% url 'record_click' %}?title={{ job.title }}&link={{ job.link }}&location={{ job.location }}&company={{ job.company.name }}" target="_blank">
+                    View Job
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="recommendation-box">
+        <p>No recommendations available yet. Update your profile to see personalized job suggestions.</p>
+    </div>
+{% endif %}
+{% endblock %}
