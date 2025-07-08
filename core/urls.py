@@ -13,6 +13,9 @@ urlpatterns = [
     path('accounts/similar_users/', views.similar_users_recommendations, name='similar_users'),
     path('accounts/record-click/', views.record_job_click, name='record_click'),
     path('accounts/search/', views.search_jobs, name='search_jobs'),
+    path('accounts/evaluate/', views.evaluate_system, name='evaluate_system'),
+
+
 
 
 ]

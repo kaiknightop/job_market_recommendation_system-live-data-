@@ -32,6 +32,8 @@ urlpatterns = [
     path('track_click/', views.track_job_click, name='track_job_click'),
     path('similar_users/', views.similar_users_recommendations, name='similar_users'),
     path('search/', views.search_jobs, name='search_jobs'),
+    path('evaluate/', views.evaluate_system, name='evaluate_system'),
+
 ]
 
 

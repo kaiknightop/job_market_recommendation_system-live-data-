@@ -10,6 +10,7 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import CountVectorizer
 import re 
 from .models import UserJobInteraction
@@ -296,4 +297,67 @@ def search_jobs(request):
         "keyword": keyword,
         "similar_jobs": similar_jobs,
         "api_jobs": api_jobs
+    })
+
+
+@login_required
+def evaluate_system(request):
+    user = request.user
+
+    #GET recommendations from home logic 
+    profile = Profile.objects.get(user=user)
+    skills = profile.skills
+    location = profile.location
+
+    result = fetch_jobs_from_jooble(keywords=skills, location=location)
+    job_data = result if result else []
+
+    recommended_titles = []
+    if job_data and skills:
+        # Clean and vectorize as in home()
+        for job in job_data:
+            if 'snippet' in job and job['snippet']:
+                snippet = job['snippet']
+                snippet = re.sub('<.*?>', '', snippet)
+                snippet = snippet.replace('&nbsp;', ' ')
+                job['snippet'] = snippet
+
+        job_descriptions = [job.get('title', '') + ' ' + job.get('snippet', '') for job in job_data]
+
+        vectorizer = TfidfVectorizer(stop_words='english')
+        job_matrix = vectorizer.fit_transform(job_descriptions)
+        user_vector = vectorizer.transform([skills])
+
+        scores = cosine_similarity(user_vector, job_matrix)[0]
+        top_indices = scores.argsort()[::-1][:10]
+        recommended_jobs = [job_data[i] for i in top_indices]
+
+        recommended_titles = [job['title'] for job in recommended_jobs]
+
+    #GET jobs the user actually interacted with
+    interacted_titles = list(UserJobInteraction.objects.filter(user=user).values_list('job_title', flat=True))
+
+    #BUILD y_true and y_pred
+    y_true = [1 if title in interacted_titles else 0 for title in recommended_titles]
+    y_pred = [1]*len(recommended_titles)  # system predicts all recommended as positive
+
+    # Avoid empty data error
+    if not y_true:
+        y_true = [0]
+        y_pred = [0]
+
+    #CALCULATE METRICS
+    precision = precision_score(y_true, y_pred, zero_division=0)
+    recall = recall_score(y_true, y_pred, zero_division=0)
+    f1 = f1_score(y_true, y_pred, zero_division=0)
+
+    print("Evaluation Results")
+    print(f"Precision: {precision:.2f}")
+    print(f"Recall: {recall:.2f}")
+    print(f"F1 Score: {f1:.2f}")
+
+    return render(request, 'evaluation.html', {
+        'precision': precision,
+        'recall': recall,
+        'f1': f1
     })
